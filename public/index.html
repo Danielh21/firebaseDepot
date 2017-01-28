@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Depot App</title>
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+
+    <!-- AngularFire, jQuery, BootstrapFiles, Own Files -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="JS/app.js"></script>
+    <script src="JS/indexController.js"></script>
+    <script src="JS/formController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        p {
+            display: inline;
+        }
+
+        .form-control {
+            display: inline;
+        }
+
+        .fronttag {
+            font-size: medium;
+        }
+
+        .proptag {
+            font-size: medium;
+            color: brown;
+        }
+
+        .gearSpan {
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="indexControl as iCtrl">
+<div class="container">
+    <div class="row">
+
+        <div id="add" class="row">
+            <div class="col-lg-5">
+                <h1>Status</h1>
+            Add Element <span data-toggle="modal" data-target="#addForm"
+                              style="color: green; cursor: pointer"> &#9733; </span>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="addForm" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Nyt Obejct</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Navn</label>
+                                <input type="text" ng-model="iCtrl.newDepotObject.Navn" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Beholdning:</label>
+                                <input type="number" ng-model="iCtrl.newDepotObject.Beholdning" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Note:</label>
+                                <input type="text" ng-model="iCtrl.newDepotObject.Note" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-click="iCtrl.safeNewData()" class="btn btn-default"
+                                    data-dismiss="modal">Gem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <h2> Depot Things</h2>
+    <p>Filtrer: </p> <input ng-model="iCtrl.searchText">
+    <div class="row" id="depot Things">
+        <div class="col-lg-3 col-lg-offset-1" style="height: 170px;"
+             ng-repeat="material in iCtrl.depotthings |filter: {Navn: iCtrl.searchText}">
+            <div class="bg-info">
+                <p class="fronttag"> Navn: </p>
+                <p class="proptag"> {{material.Navn}}</p>
+                <span data-toggle="modal" data-target="#myModal{{material.$id}}" class="gearSpan">&#x2699;</span>
+                <br>
+                <p class="fronttag"> Beholdning: </p>
+                <p class="proptag"> {{material.Beholdning}}</p> <br>
+                <p class="fronttag"> Note: </p>
+                <p class="proptag"> {{material.Note}}</p> <br>
+                <p class="fronttag">Ændre Beholdning:</p> <input type="number" ng-model="material.Beholdning"
+                                                                 ng-change="iCtrl.depotthings.$save(material)">
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal{{material.$id}}" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">{{material.Navn}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Navn</label>
+                                <input type="text" ng-model="material.Navn" ng-change="iCtrl.depotthings.$save(material)" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Beholdning:</label>
+                                <input type="number" ng-model="material.Beholdning" ng-change="iCtrl.depotthings.$save(material)" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Note</label>
+                                <input type="text" ng-model="material.Note" ng-change="iCtrl.depotthings.$save(material)" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
