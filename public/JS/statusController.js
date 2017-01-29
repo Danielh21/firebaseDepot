@@ -1,7 +1,7 @@
-angular.module('app')
-    .controller('indexControl', indexControl);
+angular.module('app.status')
+    .controller('statusControl', statusControl);
 
-function indexControl($firebaseArray) {
+function statusControl($firebaseArray) {
 
     var ref = firebase.database().ref().child('Depot');
     var self = this;

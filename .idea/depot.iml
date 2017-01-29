@@ -11,5 +11,6 @@
     <orderEntry type="library" name="angular" level="application" />
     <orderEntry type="library" name="angularfire" level="application" />
     <orderEntry type="library" name="bootstrap-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="angular-route" level="application" />
   </component>
 </module>

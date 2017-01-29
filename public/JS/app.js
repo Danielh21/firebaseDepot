@@ -1,7 +1,7 @@
 
 
 angular
-.module('app', ['firebase'])
+.module('app', ['firebase', 'ngRoute', 'app.status'])
 .config(function () {
     var config = {
         apiKey: "AIzaSyA4893q4Jp3_KR8u5gg3P5vUEsOdHoF_is",
