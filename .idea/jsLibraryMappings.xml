@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{angular, angular-route, angularfire, bootstrap-DefinitelyTyped}" />
+    <file url="PROJECT" libraries="{angular, angular-route, angularfire, bootstrap-DefinitelyTyped, node-DefinitelyTyped}" />
+    <includedPredefinedLibrary name="ECMAScript 6" />
   </component>
 </project>

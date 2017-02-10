@@ -1,0 +1,32 @@
+<div class="container" ng-controller="loginCtrl as lCtrl">
+    <div class="row">
+
+
+
+<div id="loginForm" ng-show=" !lCtrl.loggedin">
+
+    <div class="form-group">
+
+    <label><b>Username</b></label>
+    <input id="email" type="text" placeholder="Enter Username" name="uname" required>
+    </div>
+
+    <div class="form-group">
+
+    <label><b>Password</b></label>
+    <input id="pass" type="password" placeholder="Enter Password" name="psw" required>
+    </div>
+
+    <div class="form-group">
+    <button ng-click="lCtrl.login()" type="submit">Login</button>
+    </div>
+
+
+
+    </div>
+ <div ng-show="lCtrl.loggedin">
+     <h3>You have Succesfully Logged In! </h3>
+ </div>
+
+</div>
+</div>

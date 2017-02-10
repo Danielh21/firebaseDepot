@@ -6,7 +6,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body ng-app="app">
-<h2>Hello From Header!</h2>
+<div class="container-fluid">
+    <div id="navbar" class="collapse navbar-collapse" ng-controller="authController as aCtrl">
+    <div class="nav navbar-default">
+<div class="navbar-header">
+    <a class="navbar-brand" href="#">Depot App</a>
+</div>
+<ul class="nav navbar-nav">
+    <li ng-show="aCtrl.loggedIn"><a href="#depot">Depot</a></li>
+</ul>
+        <ul class="nav navbar-nav navbar-right" style="margin-right:10%;">
+    <li ng-show="aCtrl.loggedIn"><a ng-click="aCtrl.logOff()" style="cursor:pointer;">Log Af</a></li>
+    <li> <a> {{aCtrl.userEmail}}</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
 
 <div ng-view>
 
@@ -27,4 +42,6 @@
 <script src="JS/app.js"></script>
 <script src="JS/status.js"></script>
 <script src="JS/statusController.js"></script>
+<script src="JS/loginController.js"></script>
+<script src="JS/authController.js"></script>
 </html>
