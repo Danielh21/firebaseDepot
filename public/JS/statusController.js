@@ -1,13 +1,38 @@
 angular.module('app.status')
-    .controller('statusControl', statusControl);
+    .directive("statusDir",statusDir );
 
-function statusControl($firebaseArray) {
 
-    var ref = firebase.database().ref().child('Depot');
+function statusDir() {
+    var directive = {
+        restrict: "AE",
+        templateUrl: 'statusTemplate.html',
+        scope: {
+            childobj: '@'
+        },
+        controller: statusControl,
+        controllerAs: 'vm',
+        bindToController: false
+    };
+
+    return directive;
+}
+
+
+
+
+
+angular.module('app.status')
+    .controller('statusControl', statusControl)
+
+
+function statusControl($firebaseArray, $scope) {
+
     var self = this;
+    var childObj = $scope.childobj;
+    var ref = firebase.database().ref().child(childObj);
 
     //Bindable Variables
-    self.hej = "Welcome From Controller";
+    self.header = childObj;
     self.depotthings = $firebaseArray(ref);
     self.searchText = "";
     self.newDepotObject = {
